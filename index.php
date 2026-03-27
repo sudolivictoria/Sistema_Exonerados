@@ -148,7 +148,7 @@
                                 echo '</td>';
 
                                 //-------------------COMUNIDAD-------------------
-                                echo '<td class="px-8 py-5">';
+                                echo '<td class="px-8 py-7">';
                                 echo '<span class="font-extrabold text-primary-azul text-xl tracking-tight block truncate" title="' . htmlspecialchars($fila['comunidad']) . '">' . (!empty($fila['comunidad']) ? htmlspecialchars($fila['comunidad']) : 'No registrada') . '</span>';
                                 echo '</td>';
 
