@@ -138,8 +138,8 @@
                                 echo '<tr class="hover:bg-accent-azul/10 transition-colors duration-200">';
 
                                 //-------------------DUI-------------------
-                                echo '<td class="px-10 py-7">';
-                                echo '<span class="font-mono text-sm bg-primary-azul text-white px-4 py-1.5 rounded-xl shadow-lg font-bold tracking-wider inline-block whitespace-nowrap">' . htmlspecialchars($fila['dui']) . '</span>';
+                                echo '<td class="px-8 py-7">';
+                                echo '<span class="font-extrabold text-primary-azul text-xl tracking-tight block truncate">' . htmlspecialchars($fila['dui']) . '</span>';
                                 echo '</td>';
 
                                 //-------------------NOMBRE-------------------
@@ -148,8 +148,8 @@
                                 echo '</td>';
 
                                 //-------------------COMUNIDAD-------------------
-                                echo '<td class="px-6 py-5">';
-                                echo '<span class="text-primary-azul text-xl font-mono block truncate" title="' . htmlspecialchars($fila['comunidad']) . '">' . (!empty($fila['comunidad']) ? htmlspecialchars($fila['comunidad']) : 'No registrada') . '</span>';
+                                echo '<td class="px-8 py-5">';
+                                echo '<span class="font-extrabold text-primary-azul text-xl tracking-tight block truncate" title="' . htmlspecialchars($fila['comunidad']) . '">' . (!empty($fila['comunidad']) ? htmlspecialchars($fila['comunidad']) : 'No registrada') . '</span>';
                                 echo '</td>';
 
                                 echo '</tr>';
