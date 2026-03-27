@@ -10,12 +10,44 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-
     <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <style>
         body {
-            background-color: #f0f4f8;
+            background-color: #caeff8;
+            overflow-x: hidden;
+        }
+
+        /*-------Animación de Orbes de Fondo (Fluido y visible)---------*/
+        @keyframes float-complex {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+
+            33% {
+                transform: translate(100px, -80px) scale(1.2) rotate(10deg);
+            }
+
+            66% {
+                transform: translate(-60px, 120px) scale(0.9) rotate(-10deg);
+            }
+
+            100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+        }
+
+        .animate-float {
+            animation: float-complex 10s infinite ease-in-out;
+            will-change: transform;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: -7s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: -14s;
         }
 
         .material-symbols-outlined {
@@ -23,11 +55,10 @@
         }
 
         .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(40, 109, 90, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 25px 50px -12px rgba(1, 16, 59, 0.12);
         }
 
         .custom-scrollbar::-webkit-scrollbar {
@@ -54,6 +85,7 @@
             color: #4a5568 !important;
             font-size: 0.875rem !important;
             padding-top: 0 !important;
+            font-weight: 500;
         }
 
         .dataTables_paginate .paginate_button {
@@ -67,27 +99,19 @@
             justify-content: center !important;
             margin: 0 0.25rem !important;
             transition: all 0.3s ease;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .dataTables_paginate .paginate_button:hover:not(.disabled) {
             background: rgba(49, 227, 104, 0.15) !important;
             color: #31e368 !important;
-            border: 1px solid rgba(49, 227, 104, 0.3) !important;
         }
 
-        .dataTables_paginate .paginate_button.current,
-        .dataTables_paginate .paginate_button.current:hover {
+        .dataTables_paginate .paginate_button.current {
             background: #28c75a !important;
             color: #ffffff !important;
-            font-weight: bold;
             border: 1px solid #31e368 !important;
-            box-shadow: 0 0 12px rgba(49, 227, 104, 0.4);
-        }
-
-        .dataTables_paginate .paginate_button.disabled {
-            opacity: 0.3 !important;
-            cursor: default !important;
+            box-shadow: 0 4px 12px rgba(49, 227, 104, 0.3);
         }
 
         table.dataTable.no-footer {
@@ -95,16 +119,14 @@
         }
     </style>
 
-    <!-------------Tailwind Config--------------->
     <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#28c75a",
-                        "on-surface": "#1a202c",
-                        "on-surface-variant": "#4a5568",
+                        "primary": "#002f0f",
+                        "on-surface": "#282e3e",
+                        "on-surface-variant": "#01853d",
                     },
                     fontFamily: {
                         "body": ["Inter", "sans-serif"]
@@ -115,167 +137,102 @@
     </script>
 </head>
 
-<body class="text-on-surface font-body min-h-screen relative overflow-x-hidden selection:bg-primary/30">
-
-    <!-----------Backgroud Effects------------>
-    <div id="particles-js" class="fixed inset-0 z-0 pointer-events-none"></div>
+<body class="text-on-surface font-body min-h-screen relative selection:bg-primary/30">
 
     <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div class="absolute top-[-15%] left-[-10%] w-[50%] h-[50%] bg-primary/10 blur-[150px] rounded-full"></div>
-        <div class="absolute bottom-[-15%] right-[-10%] w-[50%] h-[50%] bg-primary/10 blur-[150px] rounded-full"></div>
+        <div class="absolute top-[-20%] left-[-10%] w-[80%] h-[80%] bg-cyan-400/30 blur-[110px] rounded-full animate-float"></div>
+
+        <div class="absolute top-[20%] right-[-15%] w-[60%] h-[60%] bg-primary/25 blur-[110px] rounded-full animate-float animation-delay-2000"></div>
+
+        <div class="absolute bottom-[-15%] left-[5%] w-[50%] h-[50%] bg-blue-500/25 blur-[100px] rounded-full animate-float animation-delay-4000"></div>
     </div>
 
-    <main class="relative z-10 pt-20 pb-20 px-4 md:px-12 max-w-7xl mx-auto">
+    <main class="relative z-10 pt-16 pb-20 px-4 md:px-12 max-w-7xl mx-auto">
 
         <div class="mb-12 space-y-8">
-            <div class="space-y-2">
-                <span class="text-primary text-lg font-bold tracking-[0.2em] uppercase">ISTU</span>
-                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-slate-900">Apulo</h1>
-                <p class="text-on-surface-variant max-w-xl italic">Consulta de exoneraciones en el Parque Recreativo Apulo.</p>
+            <div class="space-y-1">
+                <span class="bg-primary/10 text-[#01853d] px-3 py-1 rounded-full text-sm font-black tracking-widest uppercase">
+                    ISTU
+                </span>
+                <h1 class="text-5xl text-[#01103B] font-black tracking-tighter">Apulo</h1>
+                <p class="text-slate-600 font-medium italic opacity-80">Consulta de exoneraciones</p>
             </div>
 
             <div class="relative group w-full">
                 <div class="absolute inset-y-0 left-6 flex items-center pointer-events-none">
-                    <span class="material-symbols-outlined text-primary text-3xl">Buscar</span>
+                    <span class="material-symbols-outlined text-[#01103B]/60 group-focus-within:text-[#01853d] transition-colors duration-300 text-3xl">search</span>
                 </div>
-                <input id="buscadorCustom" class="w-full bg-white/90 backdrop-blur-md border border-primary/30 
-                focus:border-primary focus:ring-2 focus:ring-primary/40 rounded-2xl transition-all duration-300 py-5 pl-16 pr-8 
-                text-md text-slate-800 placeholder:text-on-surface-variant/50 outline-none shadow-lg italic"
-                    placeholder="Buscar beneficiario por DUI o por Nombre." type="text" />
+                <input id="buscadorCustom"
+                    class="w-full bg-white/50 backdrop-blur-[20px] saturate-[180%] 
+                    border border-white/40 
+                    focus:border-[#01853d] focus:ring-4 focus:ring-[#01853d]/10 
+                    rounded-2xl transition-all duration-500 py-5 pl-16 pr-8 
+                    text-md text-[#01103B] font-medium placeholder:text-[#01103B]/40 
+                    outline-none shadow-2xl italic"
+                    placeholder="Buscar exonerados por DUI o por Nombre." type="text" autocomplete="off" />
             </div>
-        </div>
 
-        <div class="glass-panel rounded-2xl overflow-hidden">
-            <div class="overflow-x-auto custom-scrollbar">
+            <div class="glass-panel rounded-3xl overflow-hidden border border-white/50">
+                <div class="overflow-x-auto custom-scrollbar">
 
-                <table id="tablaExonerados" class="w-full text-left border-separate border-spacing-y-2 px-6 py-4">
-                    <thead>
-                        <tr class="text-on-surface-variant text-sm uppercase tracking-widest font-bold">
-                            <th class="px-4 py-4 border-b border-primary/20">DUI</th>
-                            <th class="px-4 py-4 border-b border-primary/20">Nombre Completo</th>
-                            <th class="px-4 py-4 border-b border-primary/20">Teléfono</th>
-                            <th class="px-4 py-4 border-b border-primary/20">Correo Electrónico</th>
-                        </tr>
-                    </thead>
-                    <tbody class="space-y-4">
-                        <?php
-                        $sql = "SELECT dui, nombre, telefono, correo FROM exonerados_apulo";
-                        $resultado = $conexion->query($sql);
+                    <table id="tablaExonerados" class="w-full text-left border-separate border-spacing-y-2 px-6 py-6">
+                        <thead>
+                            <tr class="text-on-surface-variant text-sm uppercase tracking-widest font-bold">
+                                <th class="px-4 py-4 border-b border-primary">DUI</th>
+                                <th class="px-4 py-4 border-b border-primary">Nombre Completo</th>
+                            </tr>
+                        </thead>
+                        <tbody class="space-y-4">
+                            <?php
 
-                        if ($resultado && $resultado->num_rows > 0) {
-                            while ($fila = $resultado->fetch_assoc()) {
-                                echo '<tr class="group hover:bg-[rgba(49,227,104,0.05)] transition-colors duration-300 rounded-sm">';
+                            $sql = "SELECT dui, nombre FROM exonerados_apulo";
+                            $resultado = $conexion->query($sql);
 
-                                //------dui---------->
-                                echo '<td class="px-4 py-5 rounded-l-md">';
-                                echo '<span class="bg-white text-primary border border-primary/20 px-3 py-1.5 rounded-md font-mono text-sm font-bold shadow-sm inline-block tracking-widest">';
-                                echo htmlspecialchars($fila['dui']);
-                                echo '</span></td>';
+                            if ($resultado && $resultado->num_rows > 0) {
+                                while ($fila = $resultado->fetch_assoc()) {
+                                    echo '<tr class="group hover:bg-white/40 transition-all duration-300">';
 
-                                //-------nombre---------->
-                                echo '<td class="px-4 py-5"><span class="font-bold text-slate-900 tracking-tight">' . htmlspecialchars($fila['nombre']) . '</span></td>';
+                                    //------dui---------->
+                                    echo '<td class="px-4 py-5 rounded-l-2xl">';
+                                    echo '<span class="bg-white text-primary border border-primary/20 px-3 py-1.5 rounded-lg font-mono text-sm font-bold shadow-sm inline-block tracking-widest">';
+                                    echo htmlspecialchars($fila['dui']);
+                                    echo '</span></td>';
 
-                                //-------edad--------->
-                                echo '<td class="px-4 py-5 text-on-surface-variant font-mono italic">' . (!empty($fila['edad']) ? htmlspecialchars($fila['edad']) : 'No registrado') . '</td>';
+                                    //-------nombre---------->
+                                    echo '<td class="px-4 py-5"><span class="font-bold text-slate-900 tracking-tight text-lg">' . htmlspecialchars($fila['nombre']) . '</span></td>';
 
-                               
-                                echo '</tr>';
+                                    //-------edad--------->
+                                    echo '<td class="px-4 py-5 rounded-r-2xl"><span class="text-on-surface-variant font-mono font-bold bg-primary/5 px-3 py-1 rounded-full">' . (!empty($fila['edad']) ? htmlspecialchars($fila['edad']) . ' años' : '---') . '</span></td>';
+
+                                    echo '</tr>';
+                                }
                             }
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
         $(document).ready(function() {
             var table = $('#tablaExonerados').DataTable({
                 language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
-                    paginate: {
-                        previous: 'Anterior',
-                        next: 'Siguiente'
-                    }
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
                 },
                 dom: '<"top">rt<"flex flex-col md:flex-row items-center justify-between px-8 py-6 border-t border-primary/10 gap-4"ip><"clear">',
                 order: [
                     [1, 'asc']
                 ],
-                pageLength: 5
+                pageLength: 6,
+                responsive: true
             });
 
             $('#buscadorCustom').on('keyup', function() {
                 table.search(this.value).draw();
-            });
-
-            particlesJS("particles-js", {
-                "particles": {
-                    "number": {
-                        "value": 50,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#31e368"
-                    },
-                    "shape": {
-                        "type": "circle"
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": false
-                    },
-                    "size": {
-                        "value": 2,
-                        "random": true
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#31e368",
-                        "opacity": 0.15,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 1,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": false
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 0.5
-                            }
-                        }
-                    }
-                },
-                "retina_detect": true
             });
         });
     </script>
