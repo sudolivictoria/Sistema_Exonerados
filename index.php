@@ -15,18 +15,7 @@
     <style>
         /*-------Fondo---------*/
         body {
-            background-color: #ecfeff;
-            background-image:
-                radial-gradient(at 10% 10%, rgba(167, 243, 208, 0.5) 0px, transparent 40%),
-                /* Verde Esmeralda Suave */
-                radial-gradient(at 90% 10%, rgba(186, 230, 253, 0.4) 0px, transparent 40%),
-                /* Azul Cielo Suave */
-                radial-gradient(at 90% 90%, rgba(167, 243, 208, 0.5) 0px, transparent 40%),
-                /* Verde Esmeralda Suave */
-                radial-gradient(at 10% 90%, rgba(186, 230, 253, 0.4) 0px, transparent 40%);
-            /* Azul Cielo Suave */
-            background-attachment: fixed;
-            min-height: 100vh;
+            background-color: #f5fdfd;
         }
 
         /*-------Efecto Vidrio Refinado---------*/
@@ -94,8 +83,8 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary-azul": "#007380",
-                        "primary-verde": "#004c36",
+                        "primary-azul": "#000829",
+                        "primary-verde": "#002e21",
                         "accent-azul": "#7dd3fc",
                         "accent-verde": "#a7f3d0",
                     },
@@ -113,7 +102,7 @@
     <main class="relative z-10 pt-16 pb-24 px-4 md:px-12 max-w-6xl mx-auto">
 
         <div class="mb-12 text-center md:text-left">
-            <span class="inline-block bg-primary-azul/10 text-primary-azul px-5 py-1.5 rounded-full text-xs font-black tracking-widest uppercase mb-4 shadow-sm border border-primary-azul/10">
+            <span class="inline-block bg-primary-verde/10 text-primary-verde px-5 py-1.5 rounded-full text-xs font-black tracking-widest uppercase mb-4 shadow-sm border border-primary-azul/10">
                 ISTU APULO
             </span>
             <h1 class="text-4xl md:text-5xl text-[#05013B] font-black tracking-tight leading-tight">Consulta de <span class="text-primary-verde">Exonerados</span></h1>
@@ -124,7 +113,7 @@
                 <span class="material-symbols-outlined text-primary-azul/30 group-focus-within:text-primary-verde transition-colors text-3xl">search</span>
             </div>
             <input id="buscadorCustom"
-                class="w-full glass-card rounded-2xl py-6 pl-16 pr-9 text-xl text-slate-900 placeholder:text-slate-400 outline-none focus:ring-4 focus:ring-primary-verde/15 transition-all duration-300 border border-white/40 focus:border-white/20 shadow-xl italic"
+                class="w-full glass-card rounded-2xl py-6 pl-16 pr-9 text-xl text-slate-900 placeholder:text-slate-400 outline-none border border-primary-azul focus:ring-4 focus:ring-primary-verde/15 transition-all duration-300 focus:border-white/20 shadow-xl italic"
                 placeholder="Escribe un nombre o número de DUI..." type="text" autocomplete="off" />
         </div>
 
@@ -132,7 +121,7 @@
             <div class="overflow-x-auto custom-scrollbar">
                 <table id="tablaExonerados" class="w-full text-left border-collapse">
                     <thead class="bg-primary-azul/5">
-                        <tr class="text-primary-azul/80 text-xs uppercase tracking-[0.25em] font-black">
+                        <tr class="text-primary-azul text-xs uppercase tracking-[0.25em] font-black">
                             <th class="px-10 py-6 border-b border-white/50">DUI Beneficiario</th>
                             <th class="px-10 py-6 border-b border-white/50">Nombre Completo</th>
                         </tr>
