@@ -1,6 +1,6 @@
 <?php include 'conexion.php'; ?>
 <!DOCTYPE html>
-<html class="dark" lang="es">
+<html lang="es">
 
 <head>
     <meta charset="utf-8" />
@@ -15,7 +15,7 @@
 
     <style>
         body {
-            background-color: #041021;
+            background-color: #f0f4f8;
         }
 
         .material-symbols-outlined {
@@ -23,11 +23,11 @@
         }
 
         .glass-panel {
-            background: rgba(13, 28, 50, 0.4);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(49, 227, 104, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 0 20px rgba(49, 227, 104, 0.05);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(40, 109, 90, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
         }
 
         .custom-scrollbar::-webkit-scrollbar {
@@ -51,7 +51,7 @@
         }
 
         .dataTables_info {
-            color: #bcc9c5 !important;
+            color: #4a5568 !important;
             font-size: 0.875rem !important;
             padding-top: 0 !important;
         }
@@ -59,7 +59,7 @@
         .dataTables_paginate .paginate_button {
             background: transparent !important;
             border: 1px solid transparent !important;
-            color: #d6e3ff !important;
+            color: #2d3748 !important;
             border-radius: 9999px !important;
             padding: 0.4rem 1rem !important;
             display: inline-flex !important;
@@ -78,8 +78,8 @@
 
         .dataTables_paginate .paginate_button.current,
         .dataTables_paginate .paginate_button.current:hover {
-            background: #31e368 !important;
-            color: #041021 !important;
+            background: #28c75a !important;
+            color: #ffffff !important;
             font-weight: bold;
             border: 1px solid #31e368 !important;
             box-shadow: 0 0 12px rgba(49, 227, 104, 0.4);
@@ -102,9 +102,9 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#31e368",
-                        "on-surface": "#d6e3ff",
-                        "on-surface-variant": "#bef8e7",
+                        "primary": "#28c75a",
+                        "on-surface": "#1a202c",
+                        "on-surface-variant": "#4a5568",
                     },
                     fontFamily: {
                         "body": ["Inter", "sans-serif"]
@@ -130,7 +130,7 @@
         <div class="mb-12 space-y-8">
             <div class="space-y-2">
                 <span class="text-primary text-lg font-bold tracking-[0.2em] uppercase">ISTU</span>
-                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white">Apulo</h1>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-slate-900">Apulo</h1>
                 <p class="text-on-surface-variant max-w-xl italic">Consulta de exoneraciones en el Parque Recreativo Apulo.</p>
             </div>
 
@@ -138,9 +138,10 @@
                 <div class="absolute inset-y-0 left-6 flex items-center pointer-events-none">
                     <span class="material-symbols-outlined text-primary text-3xl">Buscar</span>
                 </div>
-                <input id="buscadorCustom" class="w-full bg-[#041021]/80 backdrop-blur-md border border-primary/30 
+                <input id="buscadorCustom" class="w-full bg-white/90 backdrop-blur-md border border-primary/30 
                 focus:border-primary focus:ring-2 focus:ring-primary/40 rounded-2xl transition-all duration-300 py-5 pl-16 pr-8 
-                text-md text-white placeholder:text-on-surface-variant/50 outline-none shadow-lg italic" placeholder="Buscar beneficiario por DUI o por Nombre." type="text" />
+                text-md text-slate-800 placeholder:text-on-surface-variant/50 outline-none shadow-lg italic"
+                    placeholder="Buscar beneficiario por DUI o por Nombre." type="text" />
             </div>
         </div>
 
@@ -167,19 +168,17 @@
 
                                 //------dui---------->
                                 echo '<td class="px-4 py-5 rounded-l-md">';
-                                echo '<span class="bg-[#041021] text-primary border border-primary/30 px-3 py-1.5 rounded-md font-mono text-sm font-bold shadow-[0_0_10px_rgba(49,227,104,0.15)] inline-block tracking-widest">';
+                                echo '<span class="bg-white text-primary border border-primary/20 px-3 py-1.5 rounded-md font-mono text-sm font-bold shadow-sm inline-block tracking-widest">';
                                 echo htmlspecialchars($fila['dui']);
                                 echo '</span></td>';
 
                                 //-------nombre---------->
-                                echo '<td class="px-4 py-5"><span class="font-bold text-white tracking-tight">' . htmlspecialchars($fila['nombre']) . '</span></td>';
+                                echo '<td class="px-4 py-5"><span class="font-bold text-slate-900 tracking-tight">' . htmlspecialchars($fila['nombre']) . '</span></td>';
 
-                                //-------telefono--------->
-                                echo '<td class="px-4 py-5 text-on-surface-variant font-mono italic">' . (!empty($fila['telefono']) ? htmlspecialchars($fila['telefono']) : 'No registrado') . '</td>';
+                                //-------edad--------->
+                                echo '<td class="px-4 py-5 text-on-surface-variant font-mono italic">' . (!empty($fila['edad']) ? htmlspecialchars($fila['edad']) : 'No registrado') . '</td>';
 
-                                //--------correo--------->
-                                echo '<td class="px-4 py-5 text-on-surface-variant italic rounded-r-md">' . (!empty($fila['correo']) ? htmlspecialchars($fila['correo']) : 'No registrado') . '</td>';
-
+                               
                                 echo '</tr>';
                             }
                         }
@@ -231,7 +230,7 @@
                         "type": "circle"
                     },
                     "opacity": {
-                        "value": 0.3,
+                        "value": 0.5,
                         "random": false
                     },
                     "size": {
