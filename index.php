@@ -13,105 +13,75 @@
     <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <style>
+        /*-------Fondo---------*/
         body {
-            background-color: #caeff8;
-            overflow-x: hidden;
+            background-color: #ecfeff;
+            background-image:
+                radial-gradient(at 10% 10%, rgba(167, 243, 208, 0.5) 0px, transparent 40%),
+                /* Verde Esmeralda Suave */
+                radial-gradient(at 90% 10%, rgba(186, 230, 253, 0.4) 0px, transparent 40%),
+                /* Azul Cielo Suave */
+                radial-gradient(at 90% 90%, rgba(167, 243, 208, 0.5) 0px, transparent 40%),
+                /* Verde Esmeralda Suave */
+                radial-gradient(at 10% 90%, rgba(186, 230, 253, 0.4) 0px, transparent 40%);
+            /* Azul Cielo Suave */
+            background-attachment: fixed;
+            min-height: 100vh;
         }
 
-        /*-------Animación de Orbes de Fondo (Fluido y visible)---------*/
-        @keyframes float-complex {
-            0% {
-                transform: translate(0, 0) scale(1) rotate(0deg);
-            }
-
-            33% {
-                transform: translate(100px, -80px) scale(1.2) rotate(10deg);
-            }
-
-            66% {
-                transform: translate(-60px, 120px) scale(0.9) rotate(-10deg);
-            }
-
-            100% {
-                transform: translate(0, 0) scale(1) rotate(0deg);
-            }
-        }
-
-        .animate-float {
-            animation: float-complex 10s infinite ease-in-out;
-            will-change: transform;
-        }
-
-        .animation-delay-2000 {
-            animation-delay: -7s;
-        }
-
-        .animation-delay-4000 {
-            animation-delay: -14s;
+        /*-------Efecto Vidrio Refinado---------*/
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(14px) saturate(160%);
+            -webkit-backdrop-filter: blur(14px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 10px 35px 0 rgba(1, 69, 111, 0.08);
         }
 
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(25px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 25px 50px -12px rgba(1, 16, 59, 0.12);
-        }
-
+        /*-------Scrollbar Estética---------*/
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
-            height: 6px;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(49, 227, 104, 0.3);
+            background: rgba(0, 115, 128, 0.2);
             border-radius: 10px;
         }
 
-        /*-------Styles for DataTables---------*/
+        /*-------DataTables Custom---------*/
         .dataTables_filter,
         .dataTables_length {
             display: none !important;
         }
 
         .dataTables_info {
-            color: #4a5568 !important;
+            color: #64748b !important;
             font-size: 0.875rem !important;
-            padding-top: 0 !important;
-            font-weight: 500;
         }
 
         .dataTables_paginate .paginate_button {
-            background: transparent !important;
-            border: 1px solid transparent !important;
-            color: #2d3748 !important;
-            border-radius: 9999px !important;
-            padding: 0.4rem 1rem !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            margin: 0 0.25rem !important;
-            transition: all 0.3s ease;
-            font-weight: 600;
+            padding: 0.4rem 1.1rem !important;
+            border-radius: 14px !important;
+            border: none !important;
+            background: rgba(255, 255, 255, 0.6) !important;
+            margin-left: 6px !important;
+            font-weight: 700 !important;
+            color: #007380 !important;
+            transition: all 0.25s;
         }
 
         .dataTables_paginate .paginate_button:hover:not(.disabled) {
-            background: rgba(49, 227, 104, 0.15) !important;
-            color: #31e368 !important;
+            background: rgba(167, 243, 208, 0.3) !important;
+            color: #047857 !important;
         }
 
         .dataTables_paginate .paginate_button.current {
-            background: #28c75a !important;
-            color: #ffffff !important;
-            border: 1px solid #31e368 !important;
-            box-shadow: 0 4px 12px rgba(49, 227, 104, 0.3);
+            background: #047857 !important;
+            color: white !important;
         }
 
         table.dataTable.no-footer {
@@ -124,9 +94,10 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#002f0f",
-                        "on-surface": "#282e3e",
-                        "on-surface-variant": "#01853d",
+                        "primary-azul": "#007380",
+                        "primary-verde": "#004c36",
+                        "accent-azul": "#7dd3fc",
+                        "accent-verde": "#a7f3d0",
                     },
                     fontFamily: {
                         "body": ["Inter", "sans-serif"]
@@ -137,81 +108,62 @@
     </script>
 </head>
 
-<body class="text-on-surface font-body min-h-screen relative selection:bg-primary/30">
+<body class="font-body antialiased">
 
-    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div class="absolute top-[-20%] left-[-10%] w-[80%] h-[80%] bg-cyan-400/30 blur-[110px] rounded-full animate-float"></div>
+    <main class="relative z-10 pt-16 pb-24 px-4 md:px-12 max-w-6xl mx-auto">
 
-        <div class="absolute top-[20%] right-[-15%] w-[60%] h-[60%] bg-primary/25 blur-[110px] rounded-full animate-float animation-delay-2000"></div>
+        <div class="mb-12 text-center md:text-left">
+            <span class="inline-block bg-primary-azul/10 text-primary-azul px-5 py-1.5 rounded-full text-xs font-black tracking-widest uppercase mb-4 shadow-sm border border-primary-azul/10">
+                ISTU APULO
+            </span>
+            <h1 class="text-4xl md:text-5xl text-[#05013B] font-black tracking-tight leading-tight">Consulta de <span class="text-primary-verde">Exonerados</span></h1>
+        </div>
 
-        <div class="absolute bottom-[-15%] left-[5%] w-[50%] h-[50%] bg-blue-500/25 blur-[100px] rounded-full animate-float animation-delay-4000"></div>
-    </div>
-
-    <main class="relative z-10 pt-16 pb-20 px-4 md:px-12 max-w-7xl mx-auto">
-
-        <div class="mb-12 space-y-8">
-            <div class="space-y-1">
-                <span class="bg-primary/10 text-[#01853d] px-3 py-1 rounded-full text-sm font-black tracking-widest uppercase">
-                    ISTU
-                </span>
-                <h1 class="text-5xl text-[#01103B] font-black tracking-tighter">Apulo</h1>
-                <p class="text-slate-600 font-medium italic opacity-80">Consulta de exoneraciones</p>
+        <div class="relative group mb-8">
+            <div class="absolute inset-y-0 left-6 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-primary-azul/30 group-focus-within:text-primary-verde transition-colors text-3xl">search</span>
             </div>
+            <input id="buscadorCustom"
+                class="w-full glass-card rounded-2xl py-6 pl-16 pr-9 text-xl text-slate-900 placeholder:text-slate-400 outline-none focus:ring-4 focus:ring-primary-verde/15 transition-all duration-300 border border-white/40 focus:border-white/20 shadow-xl italic"
+                placeholder="Escribe un nombre o número de DUI..." type="text" autocomplete="off" />
+        </div>
 
-            <div class="relative group w-full">
-                <div class="absolute inset-y-0 left-6 flex items-center pointer-events-none">
-                    <span class="material-symbols-outlined text-[#01103B]/60 group-focus-within:text-[#01853d] transition-colors duration-300 text-3xl">search</span>
-                </div>
-                <input id="buscadorCustom"
-                    class="w-full bg-white/50 backdrop-blur-[20px] saturate-[180%] 
-                    border border-white/40 
-                    focus:border-[#01853d] focus:ring-4 focus:ring-[#01853d]/10 
-                    rounded-2xl transition-all duration-500 py-5 pl-16 pr-8 
-                    text-md text-[#01103B] font-medium placeholder:text-[#01103B]/40 
-                    outline-none shadow-2xl italic"
-                    placeholder="Buscar exonerados por DUI o por Nombre." type="text" autocomplete="off" />
-            </div>
+        <div class="glass-card rounded-3xl overflow-hidden shadow-2xl">
+            <div class="overflow-x-auto custom-scrollbar">
+                <table id="tablaExonerados" class="w-full text-left border-collapse">
+                    <thead class="bg-primary-azul/5">
+                        <tr class="text-primary-azul/80 text-xs uppercase tracking-[0.25em] font-black">
+                            <th class="px-10 py-6 border-b border-white/50">DUI Beneficiario</th>
+                            <th class="px-10 py-6 border-b border-white/50">Nombre Completo</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/40">
+                        <?php
+                        $sql = "SELECT dui, nombre FROM exonerados_apulo";
+                        $resultado = $conexion->query($sql);
 
-            <div class="glass-panel rounded-3xl overflow-hidden border border-white/50">
-                <div class="overflow-x-auto custom-scrollbar">
+                        if ($resultado && $resultado->num_rows > 0) {
+                            while ($fila = $resultado->fetch_assoc()) {
+                                echo '<tr class="hover:bg-accent-verde/10 transition-colors duration-200">';
 
-                    <table id="tablaExonerados" class="w-full text-left border-separate border-spacing-y-2 px-6 py-6">
-                        <thead>
-                            <tr class="text-on-surface-variant text-sm uppercase tracking-widest font-bold">
-                                <th class="px-4 py-4 border-b border-primary">DUI</th>
-                                <th class="px-4 py-4 border-b border-primary">Nombre Completo</th>
-                            </tr>
-                        </thead>
-                        <tbody class="space-y-4">
-                            <?php
+                                //-------------------dui-------------------
+                                echo '<td class="px-10 py-7 rounded-l-2xl">';
+                                echo '<span class="font-mono text-sm bg-primary-verde text-white px-4 py-1.5 rounded-xl shadow-lg font-bold tracking-wider inline-block">' . htmlspecialchars($fila['dui']) . '</span>';
+                                echo '</td>';
 
-                            $sql = "SELECT dui, nombre FROM exonerados_apulo";
-                            $resultado = $conexion->query($sql);
+                                //-------------------name-------------------
+                                echo '<td class="px-10 py-7 rounded-r-2xl">';
+                                echo '<span class="font-extrabold text-slate-950 text-xl tracking-tight">' . htmlspecialchars($fila['nombre']) . '</span>';
+                                echo '</td>';
 
-                            if ($resultado && $resultado->num_rows > 0) {
-                                while ($fila = $resultado->fetch_assoc()) {
-                                    echo '<tr class="group hover:bg-white/40 transition-all duration-300">';
-
-                                    //------dui---------->
-                                    echo '<td class="px-4 py-5 rounded-l-2xl">';
-                                    echo '<span class="bg-white text-primary border border-primary/20 px-3 py-1.5 rounded-lg font-mono text-sm font-bold shadow-sm inline-block tracking-widest">';
-                                    echo htmlspecialchars($fila['dui']);
-                                    echo '</span></td>';
-
-                                    //-------nombre---------->
-                                    echo '<td class="px-4 py-5"><span class="font-bold text-slate-900 tracking-tight text-lg">' . htmlspecialchars($fila['nombre']) . '</span></td>';
-
-                                    //-------edad--------->
-                                    echo '<td class="px-4 py-5 rounded-r-2xl"><span class="text-on-surface-variant font-mono font-bold bg-primary/5 px-3 py-1 rounded-full">' . (!empty($fila['edad']) ? htmlspecialchars($fila['edad']) . ' años' : '---') . '</span></td>';
-
-                                    echo '</tr>';
-                                }
+                                echo '</tr>';
                             }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
+        </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -223,12 +175,11 @@
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
                 },
-                dom: '<"top">rt<"flex flex-col md:flex-row items-center justify-between px-8 py-6 border-t border-primary/10 gap-4"ip><"clear">',
+                dom: 'rt<"flex flex-col md:flex-row items-center justify-between px-10 py-8 gap-4"ip>',
                 order: [
                     [1, 'asc']
                 ],
-                pageLength: 6,
-                responsive: true
+                pageLength: 8
             });
 
             $('#buscadorCustom').on('keyup', function() {
