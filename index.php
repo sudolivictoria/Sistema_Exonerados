@@ -70,7 +70,7 @@
         }
 
         .dataTables_paginate .paginate_button.current {
-            background: #047857 !important;
+            background: #7fd1bf !important;
             color: white !important;
         }
 
@@ -114,7 +114,7 @@
                 <span class="material-symbols-outlined text-primary-azul/30 group-focus-within:text-primary-verde transition-colors text-3xl">search</span>
             </div>
             <input id="buscadorCustom"
-                class="w-full glass-card rounded-2xl py-6 pl-16 pr-9 text-lg text-slate-900 placeholder:text-slate-400 outline-none border border-primary-azul focus:ring-4 focus:ring-primary-verde/15 transition-all duration-300 focus:border-white/20 shadow-xl italic"
+                class="w-full glass-card rounded-2xl py-6 pl-16 pr-9 text-lg text-slate-900 placeholder:text-slate-400 outline-none border border-primary-azul focus:ring-4 focus:ring-primary-azul/50 transition-all duration-300 focus:border-white/20 shadow-xl italic"
                 placeholder="Escribe un nombre o número de DUI..." type="text" autocomplete="off" />
         </div>
 
@@ -122,7 +122,7 @@
             <div class="overflow-x-auto custom-scrollbar">
                 <table id="tablaExonerados" class="w-full text-left border-collapse table-fixed">
                     <thead class="bg-primary-verde/10">
-                        <tr class="text-primary-verde text-xs uppercase tracking-[0.25em] font-black">
+                        <tr class="text-primary-verde text-lg uppercase tracking-[0.25em] font-black">
                             <th class="w-[20%] px-10 py-6 border-b border-white/50">DUI</th>
                             <th class="w-[50%] px-10 py-6 border-b border-white/50">Nombre Completo</th>
                             <th class="w-[30%] px-10 py-6 border-b border-white/50">Comunidad</th>
@@ -172,8 +172,16 @@
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
                     processing: "Procesando...",
-                    zeroRecords: "No se encontraron resultados",
-                    emptyTable: "No hay datos disponibles en la tabla",
+                    zeroRecords: `
+                    <div class="flex flex-col items-center justify-center py-10">
+                        <span class="material-symbols-outlined text-4xl text-slate-300 mb-2">search_off</span>
+                        <p class="text-slate-400 font-bold uppercase text-[10px] tracking-widest">No se encontraron resultados</p>
+                    </div>`,
+                    emptyTable: `
+                    <div class="flex flex-col items-center justify-center py-10">
+                        <span class="material-symbols-outlined text-4xl text-slate-300 mb-2">folder_off</span>
+                        <p class="text-slate-400 font-bold uppercase text-[10px] tracking-widest">No hay datos disponibles</p>
+                    </div>`,
                     info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
                     infoFiltered: "(filtrado de un total de _MAX_ registros)",
                     infoEmpty: "Mostrando 0 registros",
@@ -181,8 +189,6 @@
                         next: '<span class="material-symbols-outlined text-[20px] leading-none">chevron_right</span>',
                         previous: '<span class="material-symbols-outlined text-[20px] leading-none">chevron_left</span>',
                     },
-
-
                 },
                 dom: 'rt<"flex flex-col md:flex-row items-center justify-between px-10 py-8 gap-4"ip>',
                 order: [
