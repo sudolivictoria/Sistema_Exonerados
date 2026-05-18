@@ -170,18 +170,31 @@
             var table = $('#tablaExonerados').DataTable({
                 "ordering": false,
                 language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+                    processing: "Procesando...",
+                    zeroRecords: "No se encontraron resultados",
+                    emptyTable: "No hay datos disponibles en la tabla",
+                    info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+                    infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                    infoEmpty: "Mostrando 0 registros",
+                    paginate: {
+                        next: '<span class="material-symbols-outlined text-[20px] leading-none">chevron_right</span>',
+                        previous: '<span class="material-symbols-outlined text-[20px] leading-none">chevron_left</span>',
+                    },
+
+
                 },
                 dom: 'rt<"flex flex-col md:flex-row items-center justify-between px-10 py-8 gap-4"ip>',
                 order: [
                     [1, 'asc']
                 ],
-                pageLength: 5,
+                pageLength: 5
             });
 
             $('#buscadorCustom').on('keyup', function() {
                 table.search(this.value).draw();
             });
+
         });
     </script>
 </body>
