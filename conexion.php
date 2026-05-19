@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$usuario = "admin"; 
+$usuario = "balboa"; 
 $password = "ISTU.balboa.2026"; 
 $base_datos = "exonerados"; 
 
